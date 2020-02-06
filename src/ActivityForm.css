@@ -1,0 +1,40 @@
+.activity-form {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+}
+
+.activity-form__label {
+  font-size: 1.25rem;
+  margin: .5rem 0;
+}
+
+.activity-form__input {
+  font-size: 1.25rem;
+  line-height: 2rem;
+  padding-left: .5rem;
+}
+
+.activity-form__input--short {
+  font-size: 1.25rem;
+  line-height: 2rem;
+  padding-left: .5rem;
+  margin: 0 1rem;
+  width: 5rem;
+}
+
+.activity-form__row-grouping {
+  margin-top: .75rem;
+  flex-direction: row;
+}
+
+.activity-form__button {
+  /* flex allows for individual alignment */
+  align-self: center;
+  margin-top: 1.5rem;
+  width: 20rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  background-color: #5B879B;
+  color: white;
+}
