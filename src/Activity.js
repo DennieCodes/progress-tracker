@@ -21,6 +21,10 @@ export default class Activity extends Component {
   }
 
   render() {
+    
+    let timerLength = parseInt(this.props.timerMin * 60) + parseInt(this.props.timerSec);
+    let breakLength = parseInt(this.props.breakMin * 60) + parseInt(this.props.breakSec);
+
     return (
       <div className="activity-card">
         <h2 className="activity-card__title">{this.props.title}</h2>
@@ -28,8 +32,8 @@ export default class Activity extends Component {
         <Pomodoro
           counter={this.counter} 
           count={this.state.count} 
-          timerLength={this.props.timerLength} 
-          breakLength={this.props.breakLength}
+          timerLength={timerLength} 
+          breakLength={breakLength}
         />
       </div>
     )

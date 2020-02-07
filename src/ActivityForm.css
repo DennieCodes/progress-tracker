@@ -13,7 +13,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .activity-form__label {
   font-size: 1.25rem;
-  margin: .5rem 0;
+  margin: .5rem;
 }
 
 .activity-form__input {
@@ -26,8 +26,8 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 1.25rem;
   line-height: 2rem;
   padding-left: .5rem;
-  margin: 0 1rem;
-  width: 5rem;
+  margin-left: .5rem;
+  width: 2rem;
 }
 
 .activity-form__row-grouping {
@@ -38,9 +38,9 @@ input[type=number]::-webkit-outer-spin-button {
 .activity-form__button {
   /* flex allows for individual alignment */
   align-self: center;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   width: 20rem;
-  height: 3rem;
+  height: 4rem;
   font-size: 1.5rem;
   background-color: #5B879B;
   color: white;

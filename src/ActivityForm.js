@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './ActivityForm.css';
 
 export default class ActivityForm extends Component {
@@ -8,8 +7,10 @@ export default class ActivityForm extends Component {
     this.state = {
       title: "",
       desc: "",
-      timer: 0,
-      break: 0
+      timerMin: 0,
+      timerSec: 0,
+      breakMin: 0,
+      breakSec: 0
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,8 +24,10 @@ export default class ActivityForm extends Component {
     this.setState({
       title: "",
       desc: "",
-      timer: 0,
-      break: 0
+      timerMin: 0,
+      timerSec: 0,
+      breakMin: 0,
+      breakSec: 0
     })
   }
 
@@ -55,19 +58,30 @@ export default class ActivityForm extends Component {
           </textarea>
 
           <div className="activity-form__row-grouping">
-            <label className="activity-form__label" htmlFor="timer">Minutes for Timer</label>
-              <input className="activity-form__input--short" type="number" id="timer" name="timer" required
-                placeholder="1500"
-                value={this.state.timer}
+            <label className="activity-form__label" htmlFor="timerMin">Minutes/Seconds for Timer</label>
+              <input className="activity-form__input--short" type="number" id="timerMin" name="timerMin" required
+                placeholder="25"
+                value={this.state.timerMin}
+                onChange={this.handleChange}/>
+              
+              <input className="activity-form__input--short" type="number" id="timerSec" name="timerSec" max="60"
+                placeholder="00" 
+                value={this.state.timerSec}
                 onChange={this.handleChange}/>          
           </div>
 
           <div className="activity-form__row-grouping">
-            <label className="activity-form__label" htmlFor="break">Minutes for Break</label>
-              <input className="activity-form__input--short" type="number" id="break" name="break" required
-                placeholder="300"
-                value={this.state.break}
+            <label className="activity-form__label" htmlFor="breakMin">Minutes/Seconds for Break</label>
+              <input className="activity-form__input--short" type="number" id="breakMin" name="breakMin" required
+                placeholder="5"
+                value={this.state.breakMin}
                 onChange={this.handleChange}/>
+
+              <input className="activity-form__input--short" type="number" id="breakSec" name="breakSec" required
+                placeholder="00" max="60" 
+                value={this.state.breakSec}
+                onChange={this.handleChange}/>
+
           </div>
 
           <button className="activity-form__button">Submit</button>
