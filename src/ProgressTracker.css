@@ -1,0 +1,13 @@
+.progress-tracker {
+  margin: 1rem 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.section--row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

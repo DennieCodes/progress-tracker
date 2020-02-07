@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './ActivityForm.css';
 
 export default class ActivityForm extends Component {
@@ -68,7 +69,7 @@ export default class ActivityForm extends Component {
                 value={this.state.break}
                 onChange={this.handleChange}/>
           </div>
-          
+
           <button className="activity-form__button">Submit</button>
         </form>
       </div>
