@@ -15,10 +15,16 @@ export default class ActivityForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   
-  // Function that handles when the activity form is submitted
+  // Function that handles when the activity form is submitted passing state back to parent function
   handleSubmit(evt) {
     evt.preventDefault();
-    // this.setState({})
+    this.props.addActivity(this.state);
+    this.setState({
+      title: "",
+      desc: "",
+      timer: 0,
+      break: 0
+    })
   }
 
   // Function that handles changes to the input forms

@@ -10,6 +10,15 @@ export default class ProgressTracker extends Component {
     this.state = {
       activity: []
     }
+
+    this.addActivity = this.addActivity.bind(this);
+  }
+
+  // Function that adds new activity onto state array of activity
+  addActivity(item) {
+    this.setState(state => ({
+      activity: [...state.activity, item]
+    }));
   }
 
   render() {
@@ -27,7 +36,7 @@ export default class ProgressTracker extends Component {
         </section>
         
         <section className="activity-form">
-          <ActivityForm />
+          <ActivityForm addActivity={this.addActivity}/>
         </section>
       </div>
     );
