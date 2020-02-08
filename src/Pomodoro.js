@@ -18,6 +18,11 @@ export default class Pomodoro extends Component {
     this.countDown = this.countDown.bind(this);
   }
 
+  // Function is executed when the component is unmounted
+  componentWillUnmount() {
+    clearInterval(this.state.timerId);
+  }
+  
   // onClick Function that resets the timer value
   resetTimer() {
     if(this.state.timerId !== 0) {

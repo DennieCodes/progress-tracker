@@ -12,11 +12,17 @@ export default class Activity extends Component {
     }
   
     this.counter = this.counter.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // Function that receives a call from child Pomodoro and passes current id back to parent
   counter() {
     this.props.incrementCount(this.state.currentId);
+  }
+
+  // Function that handles when delete X button is clicked
+  handleSubmit() {
+    this.props.removeActivity(this.state.currentId);
   }
 
   render() {
@@ -26,10 +32,13 @@ export default class Activity extends Component {
 
     return (
       <div className="activity-card">
-        <h2 className="activity-card__title">{this.props.title}</h2>
+        <span className="activity-card-header">
+          <h2 className="activity-card__title">{this.props.title}</h2>
+          <button onClick={this.handleSubmit} className="activity-card-header__button">X</button>
+        </span >
+        
         {this.props.desc ? 
-          <p className="activity-card__desc">{this.props.desc}</p> : ""
-        }
+          <p className="activity-card__desc">{this.props.desc}</p> : ""}
         
         <Pomodoro
           counter={this.counter} 

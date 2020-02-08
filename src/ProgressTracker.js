@@ -12,6 +12,7 @@ export default class ProgressTracker extends Component {
     this.addActivity = this.addActivity.bind(this);
     this.incrementCount = this.incrementCount.bind(this);
     this.updateLocalStorage = this.updateLocalStorage.bind(this);
+    this.removeActivity = this.removeActivity.bind(this);
   }
 
   // Component Mounting
@@ -32,6 +33,7 @@ export default class ProgressTracker extends Component {
   }
 
   // Function that adds new array entry onto state array of activity
+  // called from child component: ActivityForm
   addActivity(item) {
     let newItem = {...item, id: uuid()};
 
@@ -40,7 +42,29 @@ export default class ProgressTracker extends Component {
     }));
   }
 
+  // Function that removes an array entry from state - activity
+  // called from child component: Activity
+  removeActivity(itemId) {
+    let updateArr = this.state.activity;
+    let activeItem = 0;
+
+    updateArr.forEach((cur, idx) => {
+      if(cur.id === itemId) {
+        activeItem = idx;
+      }
+    });
+
+    updateArr.splice(activeItem, 1);
+
+    this.setState({
+      activity: updateArr
+    });
+
+    this.updateLocalStorage();
+  }
+
   // Function counter : increments state count by 1
+  // called from child component: Activity
   incrementCount(itemId) {
     let updateArr = this.state.activity;
     let activeItem = 0;
@@ -66,6 +90,7 @@ export default class ProgressTracker extends Component {
       return(
       <Activity
         incrementCount={this.incrementCount}
+        removeActivity={this.removeActivity}
         title={activity.title}
         desc={activity.desc}
         count={activity.count}
