@@ -11,6 +11,24 @@ export default class ProgressTracker extends Component {
 
     this.addActivity = this.addActivity.bind(this);
     this.incrementCount = this.incrementCount.bind(this);
+    this.updateLocalStorage = this.updateLocalStorage.bind(this);
+  }
+
+  // Component Mounting
+  componentDidMount() {
+    this.setState({
+      activity: JSON.parse(window.localStorage.getItem("activity")) || []
+    });
+  }
+
+  // Component updating - Whenever changes to the compoent 
+  componentDidUpdate() {
+    this.updateLocalStorage();
+  }
+
+  // Function that stores locally any changes to activity
+  updateLocalStorage() {
+    window.localStorage.setItem("activity", JSON.stringify(this.state.activity));    
   }
 
   // Function that adds new array entry onto state array of activity
@@ -24,7 +42,6 @@ export default class ProgressTracker extends Component {
 
   // Function counter : increments state count by 1
   incrementCount(itemId) {
-  
     let updateArr = this.state.activity;
     let activeItem = 0;
 
@@ -38,7 +55,9 @@ export default class ProgressTracker extends Component {
     
     this.setState({
       activity: updateArr
-    })
+    });
+
+    this.updateLocalStorage();
   }
 
   render() {
