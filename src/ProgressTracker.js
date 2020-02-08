@@ -10,9 +10,10 @@ export default class ProgressTracker extends Component {
     this.state = { activity: []}
 
     this.addActivity = this.addActivity.bind(this);
+    this.incrementCount = this.incrementCount.bind(this);
   }
 
-  // Function that adds new activity onto state array of activity
+  // Function that adds new array entry onto state array of activity
   addActivity(item) {
     let newItem = {...item, id: uuid()};
 
@@ -21,11 +22,31 @@ export default class ProgressTracker extends Component {
     }));
   }
 
+  // Function counter : increments state count by 1
+  incrementCount(itemId) {
+  
+    let updateArr = this.state.activity;
+    let activeItem = 0;
+
+    updateArr.forEach((cur, idx) => {
+      if(cur.id === itemId) {
+        activeItem = idx;
+      }
+    });
+    
+    updateArr[activeItem].count = updateArr[activeItem].count+1;
+    
+    this.setState({
+      activity: updateArr
+    })
+  }
+
   render() {
 
     let activities = this.state.activity.map(activity => {
       return(
       <Activity
+        incrementCount={this.incrementCount}
         title={activity.title}
         desc={activity.desc}
         count={activity.count}
@@ -33,6 +54,7 @@ export default class ProgressTracker extends Component {
         timerSec={activity.timerSec}
         breakMin={activity.breakMin}
         breakSec={activity.breakSec}
+        id={activity.id}
         key={activity.id}
       />
     )});

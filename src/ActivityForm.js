@@ -7,6 +7,7 @@ export default class ActivityForm extends Component {
     this.state = {
       title: "",
       desc: "",
+      count: 0,
       timerMin: 0,
       timerSec: 0,
       breakMin: 0,
@@ -21,7 +22,7 @@ export default class ActivityForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.addActivity(this.state);
-    this.setState({
+    this.setState({ // Reset user input variables
       title: "",
       desc: "",
       timerMin: 0,

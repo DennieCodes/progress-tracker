@@ -79,8 +79,7 @@ export default class Pomodoro extends Component {
           onBreak: true,                                      // toggle onBreak value
           timer: this.props.breakLength || 300                // set Timer
         });
-      } 
-      else {                                                // if onBreak === true (end of break timer)       
+      } else {                                                // if onBreak === true (end of break timer)       
 
         this.setState({                                       // condition continues to be 
           isActive: true
