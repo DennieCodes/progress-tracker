@@ -22,7 +22,7 @@ export default class Pomodoro extends Component {
   componentWillUnmount() {
     clearInterval(this.state.timerId);
   }
-  
+
   // onClick Function that resets the timer value
   resetTimer() {
     if(this.state.timerId !== 0) {
@@ -38,10 +38,8 @@ export default class Pomodoro extends Component {
 
   // onClick Function that starts the timer countdown
   startTimer() {
-  
-    if (this.state.timer > 0 && !this.state.isActive) {
-      // 1. check if the alarm is active
-      this.toggleAlarm(false);
+    if (this.state.timer > 0 && !this.state.isActive) { // if timer is > 0, also timer not active
+      this.toggleAlarm(false);  // turn off the alarm if it is active
       this.setState({
         timerId: setInterval(this.countDown, 1000),
         isActive: true
@@ -66,7 +64,6 @@ export default class Pomodoro extends Component {
         timer: this.state.timer - 1       // decrement the value of timer
       });
     } else {                              // execute if the timer has completed
-      
       clearInterval(this.state.timerId);  // clear the interval calls to countdown()
       this.setState({
         isActive: false                   // set to inactive
@@ -97,6 +94,9 @@ export default class Pomodoro extends Component {
   // toggles the Alarm depending on several factors in state
   toggleAlarm(play) {
     const alarm = document.getElementById('alarm');
+    console.log(play);
+    console.log(alarm);
+    
     if (alarm)
       play ? alarm.play() : alarm.pause();                                           // sound the alarm
   }
@@ -115,7 +115,7 @@ export default class Pomodoro extends Component {
     }
 
     let alarm = this.state.timer === 0 || this.state.onBreak ?
-      <audio id="alarm">
+      <audio id="alarm" autoPlay>
         <source src="analog-watch-alarm.mp3" type="audio/mpeg"></source>
         <source src="analog-watch-alarm.wav" type="audio/wav"></source>
         Your browser does not support the audio element
@@ -135,7 +135,7 @@ export default class Pomodoro extends Component {
         <section className="section-controls">
           <button className="controls-button" onClick={this.startTimer}>Start</button>
           <button className="controls-button" onClick={this.stopTimer}>Stop</button>
-          <button className="controls-button" onClick={this.resetTimer}>Reset</button>
+          <button className="controls-button" onClick={this.resetTimer}>Restart</button>
         </section>
       </div>
     )

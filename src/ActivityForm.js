@@ -16,6 +16,8 @@ export default class ActivityForm extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
   
   // Function that handles when the activity form is submitted passing state back to parent function
@@ -35,6 +37,15 @@ export default class ActivityForm extends Component {
   // Function that handles changes to the input forms
   handleChange(evt) {
     this.setState({[evt.target.name] : evt.target.value});
+  }
+
+  // Function that handles when the submit button has focus in order for form validation
+  handleFocus() {
+    console.log('focused');
+  }
+
+  handleBlur() {
+    console.log('blurred');
   }
 
   render() {
@@ -60,7 +71,7 @@ export default class ActivityForm extends Component {
 
           <div className="activity-form__row-grouping">
             <label className="activity-form__label" htmlFor="timerMin">Minutes/Seconds for Timer</label>
-              <input className="activity-form__input--short" type="number" id="timerMin" name="timerMin" required
+              <input className="activity-form__input--short" type="number" id="timerMin" name="timerMin"
                 placeholder="25"
                 value={this.state.timerMin}
                 onChange={this.handleChange}/>
@@ -73,19 +84,25 @@ export default class ActivityForm extends Component {
 
           <div className="activity-form__row-grouping">
             <label className="activity-form__label" htmlFor="breakMin">Minutes/Seconds for Break</label>
-              <input className="activity-form__input--short" type="number" id="breakMin" name="breakMin" required
+              <input className="activity-form__input--short" type="number" id="breakMin" name="breakMin"
                 placeholder="5"
                 value={this.state.breakMin}
                 onChange={this.handleChange}/>
 
-              <input className="activity-form__input--short" type="number" id="breakSec" name="breakSec" required
+              <input className="activity-form__input--short" type="number" id="breakSec" name="breakSec"
                 placeholder="00" max="60" 
                 value={this.state.breakSec}
                 onChange={this.handleChange}/>
 
           </div>
 
-          <button className="activity-form__button">Submit</button>
+          <button className="activity-form__button"
+            onFocus={this.handleFocus}
+            onMouseOver={this.handleFocus}
+            onBlur={this.handleBlur}
+            onMouseLeave={this.handleBlur}>
+            Submit
+          </button>
         </form>
       </div>
     )
